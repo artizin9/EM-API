@@ -18,6 +18,6 @@ fastify.register(registerRoutes);
 fastify.register(staticFilesPlugin);
 
 
-fastify.listen({ port: env.PORT }).then(() => {
+fastify.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
     console.log("Server HTTP Running!");
 });
