@@ -1,0 +1,1 @@
+export type MethodRouteDTO = 'get' | 'post' | 'put' | 'delete';

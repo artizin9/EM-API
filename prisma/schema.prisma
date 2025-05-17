@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  pending
+  canceled
+  completed
+}
+
+model Corporation {
+  id       String @id @unique
+  cnpj     String @unique
+  email    String @unique
+  password String
+  name     String
+  photoURL String
+  place    String
+  times    Time[]
+}
+
+model User {
+  id         String       @id @unique
+  name       String
+  email      String       @unique
+  photoURL   String
+  password   String
+  scheduling Scheduling[]
+}
+
+model Scheduling {
+  id     String @id @unique
+  status Status @default(pending)
+  userId String
+  timeId String @unique
+  time   Time   @relation(fields: [timeId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+  createdAt String
+  finishedAt String?
+}
+
+model Time {
+  id            String      @id @unique
+  date          String
+  corporationId String
+  corporation   Corporation @relation(fields: [corporationId], references: [id])
+  scheduling   Scheduling?
+}
