@@ -8,5 +8,6 @@ export const env = {
     PORT_FRONTEND: Number(process.env.PORT_FRONTEND) || 3000,
     GMAIL_USER: process.env.GMAIL_USER as string,
     PASSWORD_GMAIL: process.env.PASSWORD_GMAIL as string,
+    REDIS_URL: process.env.REDIS_URL as string
 }
 
